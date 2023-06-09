@@ -64,7 +64,11 @@ class Solution {
             arr[e]=temp;
         }
     }
+<<<<<<< HEAD
     rightRotate(arr,k,n){
+=======
+    righttRotate(arr,k,n){
+>>>>>>> 947ca9c6b05c671f9aadab49fe2a8cc6e63ee052
        //code here
        //revsre first k element
        reverse(arr,0,n-k-1);
