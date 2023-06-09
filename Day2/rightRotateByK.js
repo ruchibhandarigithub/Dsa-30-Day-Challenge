@@ -1,5 +1,7 @@
 //{ Driver Code Starts
 //Initial Template for javascript
+
+
 'use strict';
 
 process.stdin.resume();
@@ -24,23 +26,25 @@ function readLine() {
     return inputString[currentLine++];
 }
 
+
 function main() {
     let t = parseInt(readLine());
     let i = 0;
     for(;i<t;i++)
     {
-        let input_ar0 = readLine().split(' ').map(x=>parseInt(x));
-        let n = input_ar0[0];
-        let k = input_ar0[1];
-        let arr = new Array(n);
-        let input_ar1 = readLine().split(' ').map(x=>parseInt(x));
-        for(let i=0;i<n;i++)
-            arr[i] = input_ar1[i];
+        let [n,k] = readLine().trim().split(" ").map((x) => parseInt(x));
+        let arr = readLine().trim().split(" ").map((x) => parseInt(x));
         let obj = new Solution();
-        console.log(obj.searchInSorted(arr, n, k));
-        
+        obj.leftRotate(arr,k,n);
+        let s = "";
+        for(let it of arr){
+            s+=it+" ";
+        }
+        console.log(s);
     }
 }
+
+
 // } Driver Code Ends
 
 
@@ -48,22 +52,26 @@ function main() {
 
 /**
  * @param {number[]} arr
- * @param {number} N
- * @param {number} K
- * @returns {number}
+ * @param {number} k
+ * @param {number} n
 */
 
 class Solution {
-    
-    searchInSorted(arr, N, K)
-    {
-        //your code 
-      
-        for(let i=0;i<N;i++){
-            if(arr[i]==K){
-                return 1;
-            }
+    reverse(arr,s,e){
+        while(s<=e){
+            let temp = arr[s];
+            arr[s]= arr[e];
+            arr[e]=temp;
         }
-        return -1;
     }
+    rightRotate(arr,k,n){
+       //code here
+       //revsre first k element
+       reverse(arr,0,n-k-1);
+       //reverse n-k element
+       reverse(arr,n-k,n-1);
+       //revsre the whole array;
+       reverse(arr,0,n-1);
+    }
+    
 }
